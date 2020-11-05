@@ -1,0 +1,15 @@
+title: meinsack.click
+description_html: |-
+  <p>Meinsack.click V2 using Datasette</p>
+databases:
+  meinsack:
+    tables:
+      district:
+        hidden: true
+      area:
+        hidden: true
+    queries:
+      pickupdate_street_ical:
+        sql: |-
+          select start as event_dtstart, end as event_dtend, "Gelber Sack Abholtermin" as event_name from pickupdate_street where street=:street and zipcode=:zipcode order by start
+        title: Abholtermine ICAL
