@@ -23,7 +23,7 @@ open in browser: http://localhost:8001/
 ## deployment on GCR
 
 ```
-datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml --plugins-dir plugins
+datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml --plugins-dir plugins --install datasette-ics
 ```
 
 ## bootstrap
