@@ -14,7 +14,7 @@
 ## development
 
 ```
-datasette serve meinsack.db --metadata metadata.yml
+datasette serve meinsack.db --metadata metadata.yml --plugins-dir plugins
 ```
 
 open in browser: http://localhost:8001/
@@ -23,7 +23,7 @@ open in browser: http://localhost:8001/
 ## deployment on GCR
 
 ```
-datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml
+datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml --plugins-dir plugins
 ```
 
 ## bootstrap
