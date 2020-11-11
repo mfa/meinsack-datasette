@@ -33,13 +33,20 @@
             <h2 class="subtitle mt-5 is-3">Wie bekomme ich den nächsten Abholtermin für meine Straße aus der API?</h2>
             Die Urls in V2 haben sich geändert. Die alten URLs werden aber weitergeleitet.
             
-	    <h3 class="is-4">Python</h3>
+	    <h3 class="is-4 mt-3">Python</h3>
 	    <pre>
 import requests
 r = requests.get("https://meinsack.click/v1/70327/Ulmer%20Stra%C3%9Fe/")
 print("Next: {}".format(r.json().get('dates')[0]))
 	    </pre>
-	  </div>	    
+            
+            <h3 class="is-4">R</h3>
+	    <pre>
+library(httr)
+r = GET(url="https://meinsack.click/v1/70327/Ulmer%20Stra%C3%9Fe/")
+sprintf("Next: %s", content(r)$dates[[1]])
+            </pre>
+	  </div>
         </div>
       </div>
       {% include "_footer.html" %}
