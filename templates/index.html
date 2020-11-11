@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Meinsack</title>
+    {% include "_head.html" %}
+  </head>
+
+  <body>
+    <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+      </div>
+      <div class="column is-6">
+
+        <h1 class="title has-text-centered">Meinsack</h1>
+
+        <h2 class="mt-5 is-size-4">
+          Currently only Stuttgart, Germany is supported!
+        </h2>
+
+        <div class="mt-5">
+          <form autocomplete="off">
+
+            <div class="field">
+              <label class="label">Zipcode</label>
+              <div class="control">
+                <input class="input" type="text" autocorrect="off" id="id_zipcode" placeholder="zipcode" list="dl_zipcode" maxlength="5" size="5" minlength="5" style="width: 50%;">
+                <datalist id="dl_zipcode">
+                </datalist>
+                <div class="field" id="id_zipcode_message">
+                </div>
+              </div>
+            </div>
+
+            <div class="field mt-2">
+              <label class="label">Street</label>
+              <div class="control">
+                <input class="input" type="text" autocorrect="off" id="id_street" placeholder="street" list="dl_street">
+                <datalist id="dl_street">
+                </datalist>
+                <div class="field" id="id_street_message">
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-grouped mt-5">
+              <div class="control">
+                <button class="button is-info is-primary" id="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+          <div class="mt-5" id="result">
+          </div>
+        </div>
+        <div class="column is-3">
+        </div>
+      </div>
+    </div>
+    {% include "_footer.html" %}
+  </div>
+
+    <script>
+      function zipcode_fill() {
+        let dropdown = document.getElementById('dl_zipcode');
+        dropdown.length = 0;
+
+        fetch('/meinsack.json?_shape=array&sql=select+zipcode+from+zipcode+order+by+zipcode').then(
+          function(resp) {
+            if(resp.status == 200) {
+              return resp.json();
+            }
+          }).then(function(data) {
+            let option;
+    	    for (let i = 0; i < data.length; i++) {
+              option = document.createElement('option');
+      	      option.text = data[i].zipcode;
+      	      option.value = data[i].zipcode;
+      	      dropdown.append(option);
+    	    }
+          })
+      }
+      function street_fill() {
+        let zipcode = document.getElementById('id_zipcode').value;
+        let dropdown = document.getElementById('dl_street');
+        dropdown.innerHTML = "";
+        dropdown.length = 0;
+
+        fetch('/meinsack.json?_shape=array&sql=select+distinct+street+from+pickupdate_street+where+"zipcode"+%3D+%3Ap0+order+by+street&p0=' + zipcode).then(
+          function(resp) {
+            if(resp.status == 200) {
+              return resp.json();
+            }
+          }).then(function(data) {
+            let option;
+    	    for (let i = 0; i < data.length; i++) {
+              option = document.createElement('option');
+      	      option.text = data[i].street;
+      	      option.value = data[i].street;
+      	      dropdown.append(option);
+    	    }
+          })
+      }
+
+      function check_zipcode() {
+        if(document.getElementById('id_zipcode').value.length != 5){
+          document.getElementById('id_zipcode').classList.add("is-danger");
+          document.getElementById('id_zipcode_message').innerHTML = '<p class="help is-danger">You need to set a zipcode.</p>';
+          return false
+        } else {
+          document.getElementById('id_zipcode').classList.remove("is-danger");
+          document.getElementById('id_zipcode_message').innerHTML = '';
+          return true;
+        }
+      };
+
+
+      window.onload = function() {
+        zipcode_fill();
+
+        document.getElementById("submit").onclick = function() {
+          event.preventDefault();
+          if(check_zipcode()){
+            let zipcode = document.getElementById('id_zipcode').value;
+            let street = document.getElementById('id_street').value;
+            if(street.length>0) {
+              url = "https://meinsack.click/v1/" + zipcode + "/" + street + "/"
+              document.getElementById('result').innerHTML = '<p>JSON: <a href="' + url + '">' + url + '</a></p><p>ical: <a href="' + url + 'ical/">' + url + 'ical/</a></p>'
+            } else {
+              document.getElementById('id_street_message').innerHTML = '<p class="help is-danger">You need to set a street.</p>';
+            }
+          }
+        };
+
+        document.getElementById('id_zipcode').addEventListener('focusout', (event) => {
+          if(check_zipcode()){
+            street_fill();
+          }
+        });
+
+        document.getElementById('id_zipcode').addEventListener('change', (event) => {
+          document.getElementById('id_street').value = "";
+        });
+
+        document.getElementById('id_street').addEventListener('focus', (event) => {
+          check_zipcode();
+        });
+        document.getElementById('id_street').addEventListener('focusout', (event) => {
+          document.getElementById('id_street_message').innerHTML = '';
+        });
+      };
+  </script>
+</body>
