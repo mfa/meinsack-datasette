@@ -19,6 +19,10 @@ datasette serve meinsack.db --metadata metadata.yml --plugins-dir plugins --temp
 
 open in browser: http://localhost:8001/
 
+run tests:
+```
+python -m pytest
+```
 
 ## deployment on GCR
 

@@ -1,2 +1,6 @@
 datasette
 datasette-ics
+freezegun
+httpx
+pytest
+pytest-asyncio
