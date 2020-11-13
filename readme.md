@@ -1,5 +1,7 @@
 # meinsack-datasette - gelber Sack API
 
+![Run Sanity Tests](https://github.com/mfa/meinsack-datasette/workflows/Run%20Sanity%20Tests/badge.svg)
+
 ## about
 
 - Version 1 was using Django/DjangoRestFramework + postgresql: https://github.com/opendata-stuttgart/meinsack
