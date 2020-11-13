@@ -10,7 +10,9 @@ def redirect_v1_api(request):
         view = f"pickupdate_street_ical.ics"
     else:
         view = f"pickupdate_street.v1_json"
-    return Response.redirect(f"/meinsack/{view}?street={street}&zipcode={zipcode}", status=302)
+    return Response.redirect(
+        f"/meinsack/{view}?street={street}&zipcode={zipcode}", status=302
+    )
 
 
 @hookimpl
@@ -24,13 +26,11 @@ def register_routes():
 async def render_v1_json(datasette, columns, rows):
     if not rows:
         return Response.text("no element found", status=404)
-    data = {
-        "name": rows[0]["street"],
-        "dates": []
-    }
+    data = {"name": rows[0]["street"], "dates": []}
     for row in rows:
         data["dates"].append(row["start"])
     return Response.json(data)
+
 
 def can_v1_json(columns):
     return {"zipcode", "street"}.issubset(columns)
