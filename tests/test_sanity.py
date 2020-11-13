@@ -10,10 +10,10 @@ from freezegun import freeze_time
 
 @pytest.fixture
 def app():
-    _path = Path(__file__).parent.absolute()
-    _metadata = yaml.load((_path / "../metadata.yml").open(), Loader=yaml.Loader)
+    _path = Path(__file__).parent.parent.absolute()
+    _metadata = yaml.load((_path / "metadata.yml").open(), Loader=yaml.Loader)
     _datasette = Datasette(
-        [_path / "../meinsack.db"], plugins_dir=_path / "../plugins", metadata=_metadata
+        [_path / "meinsack.db"], plugins_dir=_path / "plugins", metadata=_metadata
     )
     yield _datasette.app()
 
