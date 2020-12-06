@@ -125,7 +125,9 @@
             let zipcode = document.getElementById('id_zipcode').value;
             let street = document.getElementById('id_street').value;
             if(street.length>0) {
-              url = "https://meinsack.click/v1/" + zipcode + "/" + street + "/"
+              let hostname = window.location.hostname;
+              if(window.location.port.length > 0) { hostname += ":" + window.location.port; }
+              url = window.location.protocol + "//" + hostname + "/v1/" + zipcode + "/" + street + "/"
               document.getElementById('result').innerHTML = '<p>JSON: <a href="' + url + '">' + url + '</a></p><p>ical: <a href="' + url + 'ical/">' + url + 'ical/</a></p>'
             } else {
               document.getElementById('id_street_message').innerHTML = '<p class="help is-danger">You need to set a street.</p>';
