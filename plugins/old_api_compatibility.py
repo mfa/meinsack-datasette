@@ -1,3 +1,4 @@
+import datetime
 import json
 from datasette import hookimpl
 from datasette.utils.asgi import Response
@@ -10,8 +11,9 @@ def redirect_v1_api(request):
         view = f"pickupdate_street_ical.ics"
     else:
         view = f"pickupdate_street.v1_json"
+    today = datetime.date.today()
     return Response.redirect(
-        f"/meinsack/{view}?street={street}&zipcode={zipcode}", status=302
+        f"/meinsack/{view}?street={street}&zipcode={zipcode}&start__gt={today}", status=302
     )
 
 
