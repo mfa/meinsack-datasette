@@ -35,6 +35,7 @@ async def test_json_redirect(app):
         assert response.json().get("name") == "Römerstraße"
         _dates = response.json().get("dates")
         assert len([d for d in _dates if d.startswith("2020-")]) == 2
+        assert len([d for d in _dates if d.startswith("2021-")]) == 18
 
 
 @pytest.mark.asyncio
