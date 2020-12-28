@@ -2,16 +2,19 @@
 
 ![Run Sanity Tests](https://github.com/mfa/meinsack-datasette/workflows/Run%20Sanity%20Tests/badge.svg)
 
+
 ## about
 
 - Version 1 was using Django/DjangoRestFramework + postgresql: https://github.com/opendata-stuttgart/meinsack
 - This version is using [Datasette](https://github.com/simonw/datasette) and Sqlite.
+
 
 ### Why the change to Datasette?
 
 - Django/DRF+Postgres was oversized for a readonly rest-api with ical export
 - the maintenance started to become a hastle
 - cheaper hosting
+
 
 ## development
 
@@ -26,11 +29,13 @@ run tests:
 python -m pytest
 ```
 
+
 ## deployment on GCR
 
 ```
 datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml --plugins-dir plugins --install datasette-ics --template-dir templates
 ```
+
 
 ## bootstrap
 
@@ -43,3 +48,10 @@ date(pickupdate.date, "+1 day") as end, d.name as district, "Gelber Sack Abholte
 from pickupdate join area as a on pickupdate.area_id=a.id join zipcode as z on s.zipcode_id=z.id
 join street as s on a.id=s.schaalundmueller_district_id join district as d on s.district_id=d.id;
 ```
+
+
+## import new year
+
+- get pdf from schaal+mueller
+- copy into txt file (see previous years in `data`)
+- run import command, i.e. ``python import_data.py --filename data/stuttgart_2021.txt --year 2021``
