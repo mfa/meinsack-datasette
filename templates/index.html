@@ -12,7 +12,7 @@
     <div class="columns mt-5">
       <div class="column is-3">
       </div>
-      <div class="column is-6">
+      <div class="column is-6 mx-2">
 
         <h1 class="title has-text-centered">Meinsack</h1>
 
@@ -128,7 +128,7 @@
               let hostname = window.location.hostname;
               if(window.location.port.length > 0) { hostname += ":" + window.location.port; }
               url = window.location.protocol + "//" + hostname + "/v1/" + zipcode + "/" + street + "/"
-              document.getElementById('result').innerHTML = '<p>JSON: <a href="' + url + '">' + url + '</a></p><p>ical: <a href="' + url + 'ical/">' + url + 'ical/</a></p>'
+              document.getElementById('result').innerHTML = '<p><b>JSON:</b> <a href="' + url + '">' + url + '</a></p><p><b>ical:</b> <a href="' + url + 'ical/">' + url + 'ical/</a></p>'
             } else {
               document.getElementById('id_street_message').innerHTML = '<p class="help is-danger">You need to set a street.</p>';
             }
