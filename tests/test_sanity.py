@@ -12,7 +12,7 @@ def instance():
     db_path = _path / "meinsack.db"
     _metadata = yaml.load((_path / "metadata.yml").open(), Loader=yaml.Loader)
     _datasette = Datasette(
-        [db_path], plugins_dir=_path / "plugins", metadata=_metadata
+        [str(db_path)], plugins_dir=_path / "plugins", metadata=_metadata
     )
     yield _datasette
 
