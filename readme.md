@@ -36,6 +36,17 @@ python -m pytest
 datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml --plugins-dir plugins --install datasette-ics --template-dir templates
 ```
 
+deployed as: https://meinsack.click
+
+
+## deployment on fly.io
+
+```
+datasette publish fly meinsack.db --app meinsack -m metadata.yml --plugins-dir plugins --install datasette-ics --template-dir templates
+```
+
+alternative deployment as: https://fly.meinsack.click
+
 
 ## bootstrap
 
