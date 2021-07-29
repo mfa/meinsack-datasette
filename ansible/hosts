@@ -1,0 +1,2 @@
+[meinsack_server]
+falke.madflex.de ansible_connection=ssh

@@ -45,7 +45,14 @@ datasette publish cloudrun meinsack.db --service=meinsack -m metadata.yml --plug
 datasette publish fly meinsack.db --app meinsack -m metadata.yml --plugins-dir plugins --install datasette-ics --template-dir templates
 ```
 
+(not used anymore)
+
+
+## deployment on hetzner vps using ansible
+
 deployed as: https://meinsack.click
+
+see ansible/readme.md
 
 
 ## bootstrap

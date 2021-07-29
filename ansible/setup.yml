@@ -1,0 +1,176 @@
+---
+- name: base
+  hosts: meinsack_server
+  become: true
+  tasks:
+    - name: full system upgrade
+      pacman:
+        update_cache: true
+        upgrade: true
+    - name: Install packages
+      pacman:
+        name: python-pip
+        state: present
+    - name: add datasette user
+      ansible.builtin.user:
+        name: meinsack
+        uid: 1025
+    - name: chmod mfa
+      file:
+        path: /home/mfa
+        mode: '711'
+    - name: chmod meinsack
+      file:
+        path: /home/meinsack
+        mode: '711'
+
+- name: nginx
+  hosts: meinsack_server
+  become: true
+  tasks:
+    - name: Install packages
+      pacman:
+        name: nginx
+        state: present
+    - name: nginx.conf
+      copy:
+        src: config/nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+    - name: create sites
+      file:
+        path: /etc/nginx/sites
+        state: directory
+    - name: default.conf
+      copy:
+        src: config/nginx/default.conf
+        dest: /etc/nginx/sites/
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+- name: datasette
+  hosts: meinsack_server
+  tags: datasette
+  tasks:
+    - name: database
+      copy:
+        src: ../meinsack.db
+        dest: /home/meinsack
+        force: false
+      become: true
+      become_user: meinsack
+    - name: templates
+      copy:
+        src: ../templates
+        dest: /home/meinsack
+      become: true
+      become_user: meinsack
+    - name: static
+      file:
+        path: /home/meinsack/static
+        state: directory
+      become: true
+      become_user: meinsack
+    - name: plugins
+      copy:
+        src: ../plugins
+        dest: /home/meinsack
+      become: true
+      become_user: meinsack
+    - name: copy requirements
+      copy:
+        src: ../requirements.txt
+        dest: /home/meinsack
+      become: true
+      become_user: meinsack
+    - name: copy metadata.yml
+      copy:
+        src: ../metadata.yml
+        dest: /home/meinsack
+      become: true
+      become_user: meinsack
+    - name: copy run.sh
+      copy:
+        src: config/run.sh
+        dest: /home/meinsack
+        mode: a+rx
+      become: true
+      become_user: meinsack
+    - name: pip install
+      pip:
+        requirements: /home/meinsack/requirements.txt
+        extra_args: --user
+      become: true
+      become_user: meinsack
+    - name: systemd config
+      copy:
+        src: config/meinsack-datasette.service
+        dest: /etc/systemd/system/
+      become: true
+    - name: systemd-reload
+      ansible.builtin.systemd:
+        daemon_reload: true
+      become: true
+    - name: restart meinsack
+      service:
+        name: meinsack-datasette
+        state: restarted
+        enabled: true
+      become: true
+
+- name: acme
+  hosts: meinsack_server
+  tags: ssl
+  tasks:
+    - name: Install packages
+      pacman:
+        name:
+          - acme.sh
+          - cronie
+        state: present
+      become: true
+    - name: acme already installed
+      ansible.builtin.stat:
+        path: /home/mfa/.acme.sh/meinsack.click/fullchain.cer
+      register: acme_cert_already_present
+    - name: get ssl cert
+      command: acme.sh --issue --dns dns_hetzner --challenge-alias meinsack.click.madflex.de -d meinsack.click
+      environment:
+        HETZNER_Token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          62353139356634333036633464386261613533363863653233633165373336643830313634643864
+          3936613231333433663735363863363266326337376566620a353866396266373764373536363633
+          63653833383638386262303836356533383763633264656662663236313137323335623038376635
+          3334613862383536620a653333303837613764623133326164363533626661376431303533643032
+          66666535623536366530343661333736626133626134353161633466316166653033643935653130
+          6430333336336636376436306131336134396563656131653938
+      when: acme_cert_already_present.stat.exists == False
+    - name: start datasette
+      service:
+        name: meinsack-datasette
+        state: started
+      become: true
+    - name: auto renew ssl cert
+      cron:
+        name: "ssl renew"
+        minute: "7"
+        hour: "0"
+        job: "acme.sh --cron > /dev/null"
+    - name: start cronie
+      service:
+        name: cronie
+        state: started
+        enabled: true
+      become: true
+    - name: meinsack-datasette.conf
+      copy:
+        src: config/nginx/meinsack-datasette.conf
+        dest: /etc/nginx/sites/
+      become: true
+    - name: start nginx
+      service:
+        name: nginx
+        state: reloaded
+      become: true

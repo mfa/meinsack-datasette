@@ -1,0 +1,13 @@
+[Unit]
+Description=meinsack datasette server application
+After=network.target
+
+[Service]
+User=meinsack
+WorkingDirectory=/home/meinsack
+ExecStart=bash run.sh
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
