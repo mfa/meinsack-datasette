@@ -1,7 +1,7 @@
 ## ansible to install meinsack.click on server
 
-this was tested on Google f1.micro, AWS t3.nano and Hetzner vps with ArchLinux as Linux.
-The only ArchLinux specific part is in the full system upgrade at the beginning of the ``setup.yml``
+this was tested on Google f1.micro, AWS t3.nano and Hetzner vps with ArchLinux as Linux.  
+The ArchLinux specific part is in the full system upgrade at the beginning and all the package installs in the ``setup.yml``
 
 
 ```
