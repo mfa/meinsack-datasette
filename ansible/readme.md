@@ -1,6 +1,8 @@
 ## ansible to install meinsack.click on server
 
-this was tested on Google f1.micro, AWS t3.nano and Hetzner vps
+this was tested on Google f1.micro, AWS t3.nano and Hetzner vps with ArchLinux as Linux.
+The only ArchLinux specific part is in the full system upgrade at the beginning of the ``setup.yml``
+
 
 ```
 ansible-playbook setup.yml -l meinsack_server --vault-id vault_pass.txt
