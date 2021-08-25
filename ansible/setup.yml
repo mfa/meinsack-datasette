@@ -135,6 +135,9 @@
       ansible.builtin.stat:
         path: /home/mfa/.acme.sh/meinsack.click/fullchain.cer
       register: acme_cert_already_present
+    - name: set default to letsencrypt
+      command: acme.sh --set-default-ca --server letsencrypt
+      when: acme_cert_already_present.stat.exists == False
     - name: get ssl cert
       command: acme.sh --issue --dns dns_hetzner --challenge-alias meinsack.click.madflex.de -d meinsack.click
       environment:
