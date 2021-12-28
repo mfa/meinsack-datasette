@@ -28,7 +28,7 @@ async def test_database_found(instance):
 @pytest.mark.asyncio
 @freeze_time("2020-11-13")
 async def test_json_redirect(instance):
-    response = await instance.client.get("/v1/70180/Römerstraße/")
+    response = await instance.client.get("/v1/70180/Römerstraße/", follow_redirects=True)
     assert response.status_code == 200
     assert response.json().get("name") == "Römerstraße"
     _dates = response.json().get("dates")
@@ -38,7 +38,7 @@ async def test_json_redirect(instance):
 
 @pytest.mark.asyncio
 async def test_ical_redirect(instance):
-    response = await instance.client.get("/v1/70180/Römerstraße/ical/")
+    response = await instance.client.get("/v1/70180/Römerstraße/ical/", follow_redirects=True)
     assert response.status_code == 200
     assert response.text.startswith(
         "BEGIN:VCALENDAR\r\nX-WR-CALNAME:Abholtermine ICAL"
