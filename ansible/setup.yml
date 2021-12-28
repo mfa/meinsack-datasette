@@ -58,7 +58,7 @@
       copy:
         src: ../meinsack.db
         dest: /home/meinsack
-        force: false
+        force: true
       become: true
       become_user: meinsack
     - name: templates
