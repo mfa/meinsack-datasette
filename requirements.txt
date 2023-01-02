@@ -1,4 +1,4 @@
-datasette==0.61.1
+datasette==0.63.3
 datasette-ics
 freezegun
 httpx
