@@ -1,8 +1,34 @@
+import csv
 import datetime
 import re
 
 import click
 import sqlite_utils
+
+
+def import_kurz_data(filename):
+    db = sqlite_utils.Database("meinsack.db")
+    # this regex requires only one date in the former year!
+    with open(filename, "r") as fp:
+        reader = csv.DictReader(fp)
+        for row in reader:
+            for _ in row["dates"].split("|"):
+                area_id = row["district"]
+                dt = datetime.datetime.strptime(_, "%Y-%m-%d").date()
+                q = list(
+                    db["pickupdate"].rows_where(
+                        "date = ? and area_id = ?", [dt, area_id]
+                    )
+                )
+                if not q:
+                    db["pickupdate"].insert(
+                        {
+                            "created": datetime.datetime.utcnow(),
+                            "modified": datetime.datetime.utcnow(),
+                            "date": dt,
+                            "area_id": area_id,
+                        }
+                    )
 
 
 def parse_schaal_und_mueller_csv_data(filename, year):
@@ -68,7 +94,10 @@ def parse_schaal_und_mueller_csv_data(filename, year):
 @click.option("--filename")
 @click.option("--year", type=int)
 def main(filename, year):
-    parse_schaal_und_mueller_csv_data(filename, year)
+    if year <= 2022:
+        parse_schaal_und_mueller_csv_data(filename, year)
+    else:
+        import_kurz_data(filename)
 
 
 if __name__ == "__main__":

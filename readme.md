@@ -74,6 +74,8 @@ join street as s on a.id=s.schaalundmueller_district_id join district as d on s.
 ```
 # download icals from new collector
 python download_and_merge_data.py
+# import newly created csv file
+python import_data.py --filename data/stuttgart_2023.csv --year 2023
 ```
 
 (up until end of 2022)
