@@ -70,6 +70,13 @@ join street as s on a.id=s.schaalundmueller_district_id join district as d on s.
 
 ## import new year
 
+- run (i.e. for 2023)
+```
+# download icals from new collector
+python download_and_merge_data.py
+```
+
+(up until end of 2022)
 - get pdf from schaal+mueller
 - copy into txt file (see previous years in `data`)
 - run import command, i.e. ``python import_data.py --filename data/stuttgart_2021.txt --year 2021``

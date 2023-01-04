@@ -1,0 +1,153 @@
+district_id,slug,name
+170,altenburg,Altenburg
+192,am-bismarckturm,Am Bismarckturm
+193,am-pragfriedhof,Am Pragfriedhof
+194,am-rosensteinpark,Am Rosensteinpark
+78,an-der-burg,An der Burg
+204,asemwald,Asemwald
+195,auf-der-prag,Auf der Prag
+79,bahnhof-feuerbach,Bahnhof Feuerbach
+114,benzviertel,Benzviertel
+143,berg,Berg
+105,bergheim,Bergheim
+201,birkach-nord,Birkach-Nord
+202,birkach-sued,Birkach-Süd
+171,birkenaecker,Birkenäcker
+136,bopser,Bopser
+209,botnang-nord,Botnang-Nord
+211,botnang-ost,Botnang-Ost
+210,botnang-sued,Botnang-Süd
+212,botnang-west,Botnang-West
+115,bruckwiesen,Bruckwiesen
+172,burgholzhof,Burgholzhof
+213,buesnau,Büsnau
+173,cannstatt-mitte,Cannstatt-Mitte
+205,chausseefeld,Chausseefeld
+150,dachswald,Dachswald
+215,degerloch,Degerloch
+182,diemershalde,Diemershalde
+183,dobel,Dobel
+214,duerrlewang,Dürrlewang
+160,espan,Espan
+184,europaviertel,Europaviertel
+88,fasanenhof,Fasanenhof
+89,fasanenhof-ost,Fasanenhof-Ost
+80,feuerbach-mitte,Feuerbach-Mitte
+81,feuerbach-ost,Feuerbach-Ost
+82,feuerbacher-tal,Feuerbacher Tal
+97,feuersee,Feuersee
+116,flohberg,Flohberg
+71,frauenkopf,Frauenkopf
+165,freiberg,Freiberg
+144,gablenberg,Gablenberg
+146,gaisburg,Gaisburg
+145,gaensheide,Gänsheide
+117,gehrenwald,Gehrenwald
+106,giebel,Giebel
+111,hafen,Hafen
+216,haigst,Haigst
+174,hallschlag,Hallschlag
+98,hasenberg,Hasenberg
+185,hauptbahnhof,Hauptbahnhof
+107,hausen,Hausen
+72,hedelfingen,Hedelfingen
+151,heerstrasse,Heerstraße
+196,heilbronner-strasse,Heilbronner Straße
+137,heslach,Heslach
+75,heumaden,Heumaden
+186,heusteigviertel,Heusteigviertel
+166,hofen,Hofen
+217,hoffeld,Hoffeld
+83,hohe-warte,Hohe Warte
+206,hohenheim,Hohenheim
+152,hoehenrand,Höhenrand
+99,hoelderlinplatz,Hölderlinplatz
+161,im-geiger,Im Geiger
+138,kaltental,Kaltental
+139,karlshoehe,Karlshöhe
+187,kernerviertel,Kernerviertel
+86,killesberg,Killesberg
+220,kraeherwald,Kräherwald
+175,kurpark,Kurpark
+153,lauchaecker,Lauchäcker
+73,lederberg,Lederberg
+140,lehen,Lehen
+84,lemberg/foehrich,Lemberg/Föhrich
+197,lenzhalde,Lenzhalde
+118,lindenschulviertel,Lindenschulviertel
+119,luginsland,Luginsland
+90,moehringen-mitte,Möhringen-Mitte
+91,moehringen-nord,Möhringen-Nord
+92,moehringen-ost,Möhringen-Ost
+93,moehringen-sued,Möhringen-Süd
+167,moenchfeld,Mönchfeld
+198,moenchhalde,Mönchhalde
+162,muckensturm,Muckensturm
+168,muehlhausen,Mühlhausen
+123,muenster,Münster
+176,neckarvorstadt,Neckarvorstadt
+188,neue-vorstadt,Neue Vorstadt
+169,neugereut,Neugereut
+125,neuwirtshaus,Neuwirtshaus
+199,nordbahnhof,Nordbahnhof
+189,oberer-schlossgarten,Oberer Schlossgarten
+112,obertuerkheim,Obertürkheim
+154,oesterfeld,Österfeld
+148,ostheim,Ostheim
+155,pfaffenwald,Pfaffenwald
+207,plieningen,Plieningen
+177,pragstrasse,Pragstraße
+190,rathaus,Rathaus
+200,relenberg,Relenberg
+77,riedenberg,Riedenberg
+157,rohr,Rohr
+74,rohracker,Rohracker
+100,rosenberg,Rosenberg
+156,rosental,Rosental
+127,rot,Rot
+101,rotebuehl,Rotebühl
+120,rotenberg,Rotenberg
+178,schmidener-vorstadt,Schmidener Vorstadt
+203,schoenberg,Schönberg
+179,seelberg,Seelberg
+85,siegelberg,Siegelberg
+76,sillenbuch,Sillenbuch
+221,solitude,Solitude
+163,sommerrain,Sommerrain
+95,sonnenberg,Sonnenberg
+103,stammheim-mitte,Stammheim-Mitte
+104,stammheim-sued,Stammheim-Süd
+208,steckfeld,Steckfeld
+124,steinhaldenfeld,Steinhaldenfeld
+94,sternhaeule,Sternhäule
+147,stoeckach,Stöckach
+141,suedheim,Südheim
+218,traenke,Tränke
+149,uhlandshoehe,Uhlandshöhe
+113,uhlbach,Uhlbach
+191,universitaet,Universität
+121,untertuerkheim,Untertürkheim
+158,vaihingen-mitte,Vaihingen-Mitte
+180,veielbrunnen,Veielbrunnen
+102,vogelsang,Vogelsang
+219,waldau,Waldau
+96,wallgraben-ost,Wallgraben-Ost
+159,wallgraben-west,Wallgraben-West
+122,wangen,Wangen
+181,wasen,Wasen
+108,weilimdorf,Weilimdorf
+109,weilimdorf-nord,Weilimdorf-Nord
+142,weinsteige,Weinsteige
+87,weissenhof,Weißenhof
+222,wildpark,Wildpark
+164,winterhalde,Winterhalde
+110,wolfbusch,Wolfbusch
+126,zazenhausen,Zazenhausen
+128,zuffenhausen-am-stadtpark,Zuffenhausen-Am Stadtpark
+129,zuffenhausen-elbelen,Zuffenhausen-Elbelen
+130,zuffenhausen-frauensteg,Zuffenhausen-Frauensteg
+131,zuffenhausen-hohenstein,Zuffenhausen-Hohenstein
+132,zuffenhausen-im-raiser,Zuffenhausen-Im Raiser
+133,zuffenhausen-mitte,Zuffenhausen-Mitte
+134,zuffenhausen-moenchsberg,Zuffenhausen-Mönchsberg
+135,zuffenhausen-schuetzenbuehl,Zuffenhausen-Schützenbühl
