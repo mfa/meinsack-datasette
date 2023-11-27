@@ -8,6 +8,8 @@
 - Version 1 was using Django/DjangoRestFramework + postgresql: https://github.com/opendata-stuttgart/meinsack
 - This version is using [Datasette](https://github.com/simonw/datasette) and Sqlite.
 
+goodbye blog post: <https://madflex.de/meinsack-click-goodbye/>
+
 
 ### Why the change to Datasette?
 
